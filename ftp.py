@@ -24,12 +24,13 @@ def connect():
     except:
         pass
 
-def upload(filename): 
+def upload(path,filename): 
     try:
+        f = path + filename
         ftp = connect()
         bufsize = 1024
-        file_handler = open(filename, 'rb') 
-        ftp.storbinary('STOR %s' % os.path.basename(filename),file_handler,bufsize) 
+        file_handler = open(f, 'rb') 
+        ftp.storbinary('STOR %s' % os.path.basename(f),file_handler,bufsize) 
         ftp.set_debuglevel(0) 
         file_handler.close() 
         ftp.quit()
